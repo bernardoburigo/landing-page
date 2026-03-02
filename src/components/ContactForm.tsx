@@ -22,19 +22,24 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbyH2ascpJDsXU5rgpwvWbCelgcNhx7aop9_ZrA3mr5WZe6X8CWWl2fkTswDmdYQQdBw/exec",
-      {
-        method: "POST",
-        body: JSON.stringify(form),
-      },
-    );
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbyH2ascpJDsXU5rgpwvWbCelgcNhx7aop9_ZrA3mr5WZe6X8CWWl2fkTswDmdYQQdBw/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(form),
+        },
+      );
 
-    setLoading(false);
-
-    alert("Mensagem enviada!");
+      alert("Mensagem enviada!");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
