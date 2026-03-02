@@ -4,10 +4,10 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
-    nome: "string",
-    email: "string",
-    telefone: "number",
-    mensagem: "string",
+    nome: "",
+    email: "",
+    telefone: "",
+    mensagem: "",
   });
 
   const handleChange = (
@@ -37,7 +37,7 @@ export default function ContactForm() {
         {
           method: "POST",
           mode: "no-cors",
-          body: params,
+          body: params.toString(),
         },
       );
 
