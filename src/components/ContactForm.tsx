@@ -25,18 +25,26 @@ export default function ContactForm() {
     try {
       setLoading(true);
 
+      const params = new URLSearchParams({
+        nome: form.nome,
+        email: form.email,
+        telefone: form.telefone,
+        mensagem: form.mensagem,
+      });
+
       await fetch(
         "https://script.google.com/macros/s/AKfycbyH2ascpJDsXU5rgpwvWbCelgcNhx7aop9_ZrA3mr5WZe6X8CWWl2fkTswDmdYQQdBw/exec",
         {
           method: "POST",
           mode: "no-cors",
-          body: JSON.stringify(form),
+          body: params,
         },
       );
 
       alert("Mensagem enviada!");
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao enviar");
     } finally {
       setLoading(false);
     }
